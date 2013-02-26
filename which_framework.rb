@@ -6,8 +6,6 @@ module WhichFramework
       :rails
     elsif is_sinatra?(path)
       :sinatra
-    else
-      :dont_know
     end
   end
 

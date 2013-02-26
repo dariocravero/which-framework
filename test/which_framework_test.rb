@@ -7,6 +7,7 @@ describe "framework recognition" do
     @padrino_root = File.join(base, 'padrino')
     @rails_root = File.join(base, 'rails')
     @sinatra_root = File.join(base, 'sinatra')
+    @unknown_root = File.join(base, 'unknown')
   end
 
   it "should recognise Padrino" do
@@ -22,6 +23,11 @@ describe "framework recognition" do
   end
 
   it "should tell which framework exists on a given path" do
+    assert_equal WhichFramework.which_is_it?(@padrino_root), :padrino
+    refute_equal WhichFramework.which_is_it?(@padrino_root), :sinatra
+  end
+
+  it "should return nil if it doesn't know the framework on a given path" do
     assert_equal WhichFramework.which_is_it?(@padrino_root), :padrino
     refute_equal WhichFramework.which_is_it?(@padrino_root), :sinatra
   end
